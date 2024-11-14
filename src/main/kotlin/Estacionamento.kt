@@ -15,5 +15,15 @@ package org.study
 //- 20 vagas para moto
 //- 5 vagas para caminhão
 
+
 class Estacionamento {
+
+    fun estacionar(veiculo: Veiculo): String {
+
+        if(veiculo.tipo == "CARRO") {
+            return "Veiculo permitido"
+        }
+
+        return "Veículo não permitido"
+    }
 }
