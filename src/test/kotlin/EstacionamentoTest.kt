@@ -55,7 +55,7 @@ class EstacionamentoTest {
     }
 
     @Test
-    fun `não deve permitir estacionar um veículo do tipo CARRO se não houver vagas disponíveis` () {
+    fun `não deve permitir estacionar um veículo do tipo CARRO se não houver vagas disponíveis`() {
         val estacionamento = Estacionamento(vagasDisponiveisCarro = 0)
 
         val veiculo = Veiculo(VeiculoTipo.CARRO, LocalDateTime.now())
@@ -66,7 +66,7 @@ class EstacionamentoTest {
     }
 
     @Test
-    fun `não deve permitir estacionar um veículo do tipo MOTO se não houver vagas disponíveis` () {
+    fun `não deve permitir estacionar um veículo do tipo MOTO se não houver vagas disponíveis`() {
         val estacionamento = Estacionamento(vagasDisponiveisMoto = 0)
 
         val veiculo = Veiculo(VeiculoTipo.MOTO, LocalDateTime.now())
@@ -77,7 +77,7 @@ class EstacionamentoTest {
     }
 
     @Test
-    fun `não deve permitir estacionar um veículo do tipo CAMINHÃO se não houver vagas disponíveis` () {
+    fun `não deve permitir estacionar um veículo do tipo CAMINHÃO se não houver vagas disponíveis`() {
         val estacionamento = Estacionamento(vagasDisponiveisCaminhão = 0)
 
         val veiculo = Veiculo(VeiculoTipo.CAMINHÃO, LocalDateTime.now())
@@ -88,7 +88,7 @@ class EstacionamentoTest {
     }
 
     @Test
-    fun `deve permitir estacionar um veículo do tipo CARRO se houverem vagas disponíveis` () {
+    fun `deve permitir estacionar um veículo do tipo CARRO se houverem vagas disponíveis`() {
         val estacionamento = Estacionamento(vagasDisponiveisCarro = 10)
 
         val veiculo = Veiculo(VeiculoTipo.CARRO, LocalDateTime.now())
@@ -99,7 +99,7 @@ class EstacionamentoTest {
     }
 
     @Test
-    fun `deve permitir estacionar um veículo do tipo MOTO se houverem vagas disponíveis` () {
+    fun `deve permitir estacionar um veículo do tipo MOTO se houverem vagas disponíveis`() {
         val estacionamento = Estacionamento(vagasDisponiveisMoto = 20)
 
         val veiculo = Veiculo(VeiculoTipo.MOTO, LocalDateTime.now())
@@ -110,7 +110,7 @@ class EstacionamentoTest {
     }
 
     @Test
-    fun `deve permitir estacionar um veículo do tipo CAMINHÃO se houverem vagas disponíveis` () {
+    fun `deve permitir estacionar um veículo do tipo CAMINHÃO se houverem vagas disponíveis`() {
         val estacionamento = Estacionamento(vagasDisponiveisCaminhão = 5)
 
         val veiculo = Veiculo(VeiculoTipo.CAMINHÃO, LocalDateTime.now())
@@ -118,5 +118,16 @@ class EstacionamentoTest {
         val result = estacionamento.estacionar(veiculo)
 
         assertEquals("Veiculo permitido", result)
+    }
+
+    @Test
+    fun `não deve permitir estacionar um veículo se o número ultrapassar o limite de vagas`() {
+        val estacionamento = Estacionamento(vagasDisponiveisCarro = 0, vagasDisponiveisMoto = 0, vagasDisponiveisCaminhão = 0)
+
+        val veiculo = Veiculo(VeiculoTipo.CARRO, LocalDateTime.now())
+
+        val result = estacionamento.estacionar(veiculo)
+
+        assertEquals("Não há vagas", result)
     }
 }
