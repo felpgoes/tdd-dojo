@@ -1,9 +1,8 @@
-import org.junit.jupiter.api.Assertions
+import java.time.LocalDateTime
+import kotlin.test.assertEquals
 import org.junit.jupiter.api.Test
 import org.study.Estacionamento
 import org.study.Veiculo
-import java.time.LocalDateTime
-import kotlin.test.assertEquals
 
 // Requisito:
 // - O sistema deve ser capaz de receber a entrada de um veículo, especificando o tipo de veículo e o horário de entrada
@@ -17,46 +16,29 @@ import kotlin.test.assertEquals
 
 class EstacionamentoTest {
 
-        val estacionamento = Estacionamento()
+    val estacionamento = Estacionamento()
 
     @Test
     fun `nao deve permitir estacionar um veículo de tipo diferente de carro moto ou caminhao`() {
-        val veiculo = Veiculo( "BICICLETA", LocalDateTime.now())
+        val veiculo = Veiculo("BICICLETA", LocalDateTime.now())
 
         val result = estacionamento.estacionar(veiculo)
 
         assertEquals("Veículo não permitido", result)
     }
 
-//        @Test
-//        fun `nao deve permitir estacionar um veículo de tipo carro moto ou caminhao sem informar o horario de entrada`() {
-//
-//        }
-    //
-        @Test
-        fun `deve permitir estacionar um veículo de tipo carro com horario de entrada`() {
-            val veiculo = Veiculo( "CARRO", LocalDateTime.now())
+    @Test
+    fun `deve permitir estacionar um veículo de tipo carro com horario de entrada`() {
+        val veiculo = Veiculo("CARRO", LocalDateTime.now())
 
-             val result = estacionamento.estacionar(veiculo)
+        val result = estacionamento.estacionar(veiculo)
 
-            assertEquals("Veiculo permitido", result)
-        }
-    //
+        assertEquals("Veiculo permitido", result)
+    }
+
     //    @Test
     //    fun `deve permitir estacionar um veículo de tipo moto com horario de entrada`() {}
     //
     //    @Test
     //    fun `deve permitir estacionar um veículo de tipo caminhao com horario de entrada`() {}
-
-
-
-    //    @Test
-    //    fun `deve permitir estacionar um veículo recebendo o tipo e o horário de entrada`() {
-    //        val veiculo = Veiculo("CARRO", LocalDateTime.now())
-    //
-    //        val result = estacionamento.estacionar(veiculo)
-    //
-    //        assertThat(result).isEqualTo("Veículo estacionado com sucesso")
-    //    }
-
 }
