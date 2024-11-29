@@ -40,6 +40,7 @@ class Estacionamento(
         if (veiculo.tipo == VeiculoTipo.CARRO) {
             vagasDisponiveisCarro--
         }
+
         return "Veiculo permitido"
     }
 }

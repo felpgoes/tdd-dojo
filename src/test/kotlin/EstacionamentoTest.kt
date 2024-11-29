@@ -19,7 +19,9 @@ import kotlin.test.assertEquals
 // - Deve permitir estacionar um veículo do tipo CARRO se houver vagas disponíveis
 // - Deve permitir estacionar um veículo do tipo MOTO se houver vagas disponíveis
 // - Deve permitir estacionar um veículo do tipo CAMINHÃO se houver vagas disponíveis
-// - Não deve permitir estacionar um veículo se o número ultrapassar o limite de vagas
+// - Não deve permitir estacionar um carro se o número ultrapassar o limite de vagas
+// - Não deve permitir estacionar um caminhao se o número ultrapassar o limite de vagas
+// - Não deve permitir estacionar um moto se o número ultrapassar o limite de vagas
 
 class EstacionamentoTest {
     @Test
@@ -121,13 +123,41 @@ class EstacionamentoTest {
     }
 
     @Test
-    fun `não deve permitir estacionar um veículo se o número ultrapassar o limite de vagas`() {
-        val estacionamento = Estacionamento(vagasDisponiveisCarro = 0, vagasDisponiveisMoto = 0, vagasDisponiveisCaminhão = 0)
+    fun `não deve permitir estacionar um carro se o número ultrapassar o limite de vagas`() {
+        val estacionamento = Estacionamento(vagasDisponiveisCarro = 1, vagasDisponiveisMoto = 0, vagasDisponiveisCaminhão = 0)
 
-        val veiculo = Veiculo(VeiculoTipo.CARRO, LocalDateTime.now())
+        val veiculo1 = Veiculo(VeiculoTipo.CARRO, LocalDateTime.now())
+        val veiculo2 = Veiculo(VeiculoTipo.CARRO, LocalDateTime.now())
 
-        val result = estacionamento.estacionar(veiculo)
+        val result1 = estacionamento.estacionar(veiculo1)
+        val result2 = estacionamento.estacionar(veiculo2)
 
-        assertEquals("Não há vagas", result)
+        assertEquals("Veiculo permitido", result1)
+        assertEquals("Não há vagas", result2)
     }
+
+    @Test
+    fun `não deve permitir estacionar um caminhao se o número ultrapassar o limite de vagas`() {
+        val estacionamento = Estacionamento(vagasDisponiveisCarro = 0, vagasDisponiveisMoto = 0, vagasDisponiveisCaminhão = 1)
+
+        val veiculo1 = Veiculo(VeiculoTipo.CAMINHÃO, LocalDateTime.now())
+        val veiculo2 = Veiculo(VeiculoTipo.CAMINHÃO, LocalDateTime.now())
+
+        val result1 = estacionamento.estacionar(veiculo1)
+        val result2 = estacionamento.estacionar(veiculo2)
+
+        assertEquals("Veiculo permitido", result1)
+        assertEquals("Não há vagas", result2)
+    }
+
+//    @Test
+//    fun `não deve permitir estacionar um moto se o número ultrapassar o limite de vagas`() {
+//        val estacionamento = Estacionamento(vagasDisponiveisCarro = 0, vagasDisponiveisMoto = 0, vagasDisponiveisCaminhão = 0)
+//
+//        val veiculo = Veiculo(VeiculoTipo.MOTO, LocalDateTime.now())
+//
+//        val result = estacionamento.estacionar(veiculo)
+//
+//        assertEquals("Não há vagas", result)
+//    }
 }
