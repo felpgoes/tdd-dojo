@@ -22,7 +22,17 @@ class Estacionamento (
 ) {
 
     fun estacionar(veiculo: Veiculo): String {
+
+
         if (vagasDisponiveisCarro == 0 && veiculo.tipo == VeiculoTipo.CARRO) {
+            return "Não há vagas"
+        }
+
+        if (vagasDisponiveisMoto == 0 && veiculo.tipo == VeiculoTipo.MOTO) {
+            return "Não há vagas"
+        }
+
+        if (vagasDisponiveisCaminhão == 0 && veiculo.tipo == VeiculoTipo.CAMINHÃO) {
             return "Não há vagas"
         }
 
