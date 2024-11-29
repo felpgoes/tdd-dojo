@@ -19,6 +19,7 @@ import kotlin.test.assertEquals
 // - Deve permitir estacionar um veículo do tipo CARRO se houver vagas disponíveis
 // - Deve permitir estacionar um veículo do tipo MOTO se houver vagas disponíveis
 // - Deve permitir estacionar um veículo do tipo CAMINHÃO se houver vagas disponíveis
+// - Não deve permitir estacionar um veículo se o número ultrapassar o limite de vagas
 
 class EstacionamentoTest {
     @Test

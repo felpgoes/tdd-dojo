@@ -22,7 +22,9 @@ class Estacionamento (
 ) {
 
     fun estacionar(veiculo: Veiculo): String {
-
+        if(VeiculoTipo.entries.all { veiculo.tipo != it }) {
+            return "Veículo não permitido"
+        }
 
         if (vagasDisponiveisCarro == 0 && veiculo.tipo == VeiculoTipo.CARRO) {
             return "Não há vagas"
@@ -36,10 +38,6 @@ class Estacionamento (
             return "Não há vagas"
         }
 
-        if (veiculo.tipo == VeiculoTipo.CARRO || veiculo.tipo == VeiculoTipo.MOTO || veiculo.tipo == VeiculoTipo.CAMINHÃO) {
-            return "Veiculo permitido"
-        }
-
-        return "Veículo não permitido"
+        return "Veiculo permitido"
     }
 }
