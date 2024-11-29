@@ -5,15 +5,21 @@ import org.study.VeiculoTipo
 import java.time.LocalDateTime
 import kotlin.test.assertEquals
 
-// Requisito:
-// - O sistema deve ser capaz de receber a entrada de um veículo, especificando o tipo de veículo e o horário de entrada
-// Cenarios de Teste
+// Requisito: O sistema deve ser capaz de receber a entrada de um veículo, especificando o tipo de veículo e o horário de entrada
 // - Não deve permitir estacionar um veículo de tipo diferente de CARRO, MOTO ou CAMINHÃO
 // - Não deve permitir estacionar um veículo de tipo CARRO, MOTO ou CAMINHÃO sem informar o horário de entrada
 // - Deve permitir estacionar um veículo do tipo CARRO com o horário de entrada
 // - Deve permitir estacionar um veículo do tipo MOTO com o horário de entrada
 // - Deve permitir estacionar um veículo do tipo CAMINHÃO com o horário de entrada
-// - Deve
+
+// Requisito: O sistema deve verificar a disponibilidade de vagas antes de permitir a entrada de um novo veículo.
+// - Não deve permitir estacionar um veículo do tipo CARRO se não houver vagas disponíveis
+// - Não deve permitir estacionar um veículo do tipo MOTO se não houver vagas disponíveis
+// - Não deve permitir estacionar um veículo do tipo CAMINHÃO se não houver vagas disponíveis
+// - Deve permitir estacionar um veículo do tipo CARRO se houver vagas disponíveis
+// - Deve permitir estacionar um veículo do tipo MOTO se houver vagas disponíveis
+// - Deve permitir estacionar um veículo do tipo CAMINHÃO se houver vagas disponíveis
+
 class EstacionamentoTest {
     @Test
     fun `deve permitir estacionar um veículo de tipo CARRO com horario de entrada`() {
@@ -45,5 +51,16 @@ class EstacionamentoTest {
         val result = estacionamento.estacionar(veiculo)
 
         assertEquals("Veiculo permitido", result)
+    }
+
+    @Test
+    fun `não deve permitir estacionar um veículo do tipo CARRO se não houver vagas disponíveis` () {
+        val estacionamento = Estacionamento(vagasDisponiveisCarro = 0)
+
+        val veiculo = Veiculo(VeiculoTipo.CARRO, LocalDateTime.now())
+
+        val result = estacionamento.estacionar(veiculo)
+
+        assertEquals("Não há vagas", result)
     }
 }

@@ -15,8 +15,17 @@ package org.study
 // - 20 vagas para moto
 // - 5 vagas para caminhão
 
-class Estacionamento {
+class Estacionamento (
+    var vagasDisponiveisCarro: Int = 10,
+    var vagasDisponiveisMoto: Int = 20,
+    var vagasDisponiveisCaminhão: Int = 5
+) {
+
     fun estacionar(veiculo: Veiculo): String {
+        if (vagasDisponiveisCarro == 0 && veiculo.tipo == VeiculoTipo.CARRO) {
+            return "Não há vagas"
+        }
+
         if (veiculo.tipo == VeiculoTipo.CARRO || veiculo.tipo == VeiculoTipo.MOTO || veiculo.tipo == VeiculoTipo.CAMINHÃO) {
             return "Veiculo permitido"
         }
