@@ -1,6 +1,6 @@
-import kotlin.test.assertEquals
 import org.junit.jupiter.api.Test
 import org.study.FizzBuzz
+import kotlin.test.assertEquals
 
 // Cenarios de Teste
 // 1. Se o numero for divisivel por 3, deve retornar "Fizz"
@@ -8,7 +8,6 @@ import org.study.FizzBuzz
 // 3. Se o numero for divisivel por 3 e 5, deve retornar "FizzBuzz"
 
 class FizzBuzzTest {
-
     @Test
     fun `Should return Fizz when number is divisible by 3`() {
         val result = FizzBuzz.calculate(3)
@@ -44,9 +43,23 @@ class FizzBuzzTest {
 
         assertEquals(
             listOf(
-                1, 2, "Fizz", 4, "Buzz", "Fizz", 7, 8, "Fizz", "Buzz", 11, "Fizz", 13, 14, "FizzBuzz"
+                1,
+                2,
+                "Fizz",
+                4,
+                "Buzz",
+                "Fizz",
+                7,
+                8,
+                "Fizz",
+                "Buzz",
+                11,
+                "Fizz",
+                13,
+                14,
+                "FizzBuzz",
             ),
-            result
+            result,
         )
     }
 }
