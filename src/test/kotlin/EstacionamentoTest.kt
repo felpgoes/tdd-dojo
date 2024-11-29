@@ -3,6 +3,7 @@ import kotlin.test.assertEquals
 import org.junit.jupiter.api.Test
 import org.study.Estacionamento
 import org.study.Veiculo
+import org.study.VeiculoTipo
 
 // Requisito:
 // - O sistema deve ser capaz de receber a entrada de um veículo, especificando o tipo de veículo e o horário de entrada
@@ -28,8 +29,26 @@ class EstacionamentoTest {
     }
 
     @Test
-    fun `deve permitir estacionar um veículo de tipo carro com horario de entrada`() {
-        val veiculo = Veiculo("CARRO", LocalDateTime.now())
+    fun `deve permitir estacionar um veículo de tipo CARRO com horario de entrada`() {
+        val veiculo = Veiculo(VeiculoTipo.CARRO.name, LocalDateTime.now())
+
+        val result = estacionamento.estacionar(veiculo)
+
+        assertEquals("Veiculo permitido", result)
+    }
+
+    @Test
+    fun `deve permitir estacionar um veículo de tipo MOTO com horario de entrada`() {
+        val veiculo = Veiculo(VeiculoTipo.MOTO.name, LocalDateTime.now())
+
+        val result = estacionamento.estacionar(veiculo)
+
+        assertEquals("Veiculo permitido", result)
+    }
+
+    @Test
+    fun `deve permitir estacionar um veículo de tipo CAMINHÃO com horario de entrada`() {
+        val veiculo = Veiculo(VeiculoTipo.CAMINHÃO.name, LocalDateTime.now())
 
         val result = estacionamento.estacionar(veiculo)
 

@@ -20,7 +20,7 @@ class Estacionamento {
 
     fun estacionar(veiculo: Veiculo): String {
 
-        if(veiculo.tipo == "CARRO") {
+        if(veiculo.tipo == VeiculoTipo.CARRO.name || veiculo.tipo == VeiculoTipo.MOTO.name || veiculo.tipo == VeiculoTipo.CAMINHÃO.name) {
             return "Veiculo permitido"
         }
 
